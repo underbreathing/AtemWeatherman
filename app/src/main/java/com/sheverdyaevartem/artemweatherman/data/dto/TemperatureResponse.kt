@@ -1,7 +1,7 @@
 package com.sheverdyaevartem.artemweatherman.data.dto
 
 data class TemperatureResponse(
-    val data: List<Data>,
+    val `data`: List<Data>,
     val dateGenerated: String,
     val status: String,
     val user: String,

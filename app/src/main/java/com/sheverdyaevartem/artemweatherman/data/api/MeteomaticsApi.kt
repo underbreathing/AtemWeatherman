@@ -19,7 +19,7 @@ interface MeteomaticsApi {
     ): TokenResponse
 
     @GET("{datetime}/t_2m:C/{coordinates}/json?model=mix")
-    fun getWeatherData(
+    suspend fun getWeatherData(
         @Path("datetime") datetime: String,
         @Path("coordinates") coordinates: String,
     ):TemperatureResponse

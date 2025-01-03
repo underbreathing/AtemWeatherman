@@ -1,6 +1,7 @@
 package com.sheverdyaevartem.artemweatherman.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,6 +27,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         viewModel.getTemperatureInVoronezh()
+        lifecycleScope.launch {
+            viewModel.observeTemperatureState.collect{
+                when(it){
+                    TemperatureState.Error -> {}
+                    TemperatureState.Loading -> {}
+                    is TemperatureState.Success -> Log.d("retrofitMy","temperature in voronezh it is ${it.temperature}")
+                }
+            }
+        }
         setContent {
             ArtemWeathermanTheme {
                 ShowPreview()

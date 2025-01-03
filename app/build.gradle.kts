@@ -46,8 +46,8 @@ dependencies {
     implementation(libs.koin.core)
     
     implementation(libs.retrofit)
-
     implementation(libs.converter.gson)
+
     implementation(libs.gson)
 
     implementation(libs.glide)

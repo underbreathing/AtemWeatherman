@@ -17,7 +17,7 @@ import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainViewModel(val weatherUseCase: ReceiptTemperatureUseCase) : ViewModel() {
+class MainViewModel(private val weatherUseCase: ReceiptTemperatureUseCase) : ViewModel() {
 
     val observeTemperatureState: StateFlow<TemperatureState> get() = temperatureVoronezhState
 
@@ -29,14 +29,14 @@ class MainViewModel(val weatherUseCase: ReceiptTemperatureUseCase) : ViewModel()
         viewModelScope.launch {
             val result = weatherUseCase.invoke(currentTime, defaultCoordinates)
             when (result) {
-                is Resource.BadRequestError -> TODO()
-                is Resource.ConnectionError -> TODO()
-                is Resource.ServerError -> TODO()
+                is Resource.BadRequestError -> {}
+                is Resource.ConnectionError -> {}
+                is Resource.ServerError -> {}
                 is Resource.Success -> {
                     temperatureVoronezhState.emit(TemperatureState.Success("${result.data}\'C"))
                 }
 
-                is Resource.UnknownError -> TODO()
+                is Resource.UnknownError -> {}
             }
         }
     }

@@ -7,7 +7,7 @@ class TemperatureMapper {
 
     fun map(temperatureResponse: TemperatureResponse): Temperature {
         return with(temperatureResponse) {
-            Temperature(data.first().coordinates.first().dates.first().value)
+            Temperature(`data`.first().coordinates.first().dates.first().value)
         }
     }
 
