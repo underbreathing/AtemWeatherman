@@ -1,4 +1,4 @@
-package com.sheverdyaevartem.artemweatherman.ui.theme
+package com.sheverdyaevartem.artemweatherman.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
