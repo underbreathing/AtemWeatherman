@@ -1,24 +1,31 @@
 package com.sheverdyaevartem.artemweatherman.data.impl
 
 import android.util.Log
-import com.sheverdyaevartem.artemweatherman.data.api.MeteomaticsApi
+import com.sheverdyaevartem.artemweatherman.data.api.meteomatics.MeteomaticsApi
 import com.sheverdyaevartem.artemweatherman.data.api.RemoteDataSource
+import com.sheverdyaevartem.artemweatherman.data.api.freeweather.FreeWeatherApi
+import com.sheverdyaevartem.artemweatherman.data.dto.FreeWeatherRequest
 import com.sheverdyaevartem.artemweatherman.data.dto.NetworkResponse
-import com.sheverdyaevartem.artemweatherman.data.dto.TemperatureRequest
+import com.sheverdyaevartem.artemweatherman.data.dto.meteomatics.TemperatureRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RemoteDataSourceImpl(private val weatherService: MeteomaticsApi) : RemoteDataSource {
+class RemoteDataSourceImpl(
+    private val weatherService: MeteomaticsApi,
+    private val freeWeatherService: FreeWeatherApi
+) : RemoteDataSource {
 
     override suspend fun doRequest(dto: Any): NetworkResponse {
         return withContext(Dispatchers.IO) {
             try {
                 when (dto) {
                     is TemperatureRequest -> {
-                        val response =
-                            weatherService.getWeatherData(dto.currentTime, dto.coordinates)
+                        weatherService.getWeatherData(dto.currentTime, dto.coordinates)
+                            .apply { resultCode = 200 }
+                    }
 
-                        response.apply { resultCode = 200 }
+                    is FreeWeatherRequest -> {
+                        freeWeatherService.getTempInCity(dto.city).apply { resultCode = 200 }
                     }
 
                     else -> {
@@ -26,7 +33,7 @@ class RemoteDataSourceImpl(private val weatherService: MeteomaticsApi) : RemoteD
                     }
                 }
             } catch (t: Throwable) {
-                Log.d("retrofitMy","${t.printStackTrace()}")
+                Log.d("retrofitMy", "remote data source impl -> ${t.printStackTrace()}")
                 NetworkResponse().apply { resultCode = 500 }
             }
         }

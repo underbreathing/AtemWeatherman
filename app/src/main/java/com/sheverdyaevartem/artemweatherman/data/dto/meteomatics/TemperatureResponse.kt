@@ -1,4 +1,6 @@
-package com.sheverdyaevartem.artemweatherman.data.dto
+package com.sheverdyaevartem.artemweatherman.data.dto.meteomatics
+
+import com.sheverdyaevartem.artemweatherman.data.dto.NetworkResponse
 
 data class TemperatureResponse(
     val `data`: List<Data>,
