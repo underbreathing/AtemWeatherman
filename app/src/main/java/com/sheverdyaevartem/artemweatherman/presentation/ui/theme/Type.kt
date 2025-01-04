@@ -1,4 +1,4 @@
-package com.sheverdyaevartem.artemweatherman.ui.theme
+package com.sheverdyaevartem.artemweatherman.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

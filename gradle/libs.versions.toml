@@ -12,9 +12,10 @@ koin = "3.1.2"
 retrofit = "2.9.0"
 gson = "2.10"
 glide = "4.16.0"
-
+coil = "2.1.0"
 
 [libraries]
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }

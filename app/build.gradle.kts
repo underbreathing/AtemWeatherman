@@ -42,10 +42,20 @@ android {
 dependencies {
 
 
+    implementation(libs.koin.android)
+    implementation(libs.koin.core)
+    
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    implementation(libs.gson)
+
+    implementation(libs.glide)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
+    implementation(libs.coil)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
